@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by jas on 29/10/2018
  */
 @Entity
-public class Notes {
+public class Note {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +18,13 @@ public class Notes {
     @Lob    // Allows JPA to use a CLOB field in the DB to larger text can be stored than a DB Sdtring field.
     private String recipeNotes;
 
+    public Note() {
+    }
+
+    public Note(String recipeNotes, Recipe recipe) {
+        this.recipe = recipe;
+        this.recipeNotes = recipeNotes;
+    }
 
     public Long getId() {
         return id;

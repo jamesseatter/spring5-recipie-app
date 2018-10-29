@@ -2,10 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Recipe Application</title>
+    <title>Recipe Home</title>
 </head>
 <body>
 <h1>My Recipies!</h1>
-<p th:text="'Recipe List!!'">Recipe List!!</p>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+    </tr>
+    <tr th:each="recipe : ${recipes}">
+        <td th:text="${recipe.id}">123</td>
+        <td th:text="${recipe.description}">Tasty</td>
+    </tr>
+</table>
 </body>
 </html>

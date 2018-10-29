@@ -21,6 +21,16 @@ public class Ingredient {
     @ManyToOne
     private Recipe recipe;
 
+    public Ingredient() {
+    }
+
+    public Ingredient(BigDecimal amount, UnitOfMeasure uom, String description, Recipe recipe) {
+        this.amount = amount;
+        this.uom = uom;
+        this.description = description;
+        this.recipe = recipe;
+    }
+
     public Long getId() {
         return id;
     }
