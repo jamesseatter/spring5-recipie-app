@@ -1,4 +1,4 @@
-package eu.seatter.spring5recipieapp;
+package eu.seatter.spring5recipeapp;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class Spring5RecipieAppApplicationTests {
+public class Spring5RecipeAppApplicationTests {
 
     @Test
     public void contextLoads() {
