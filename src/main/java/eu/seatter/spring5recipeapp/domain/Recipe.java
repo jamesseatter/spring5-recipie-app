@@ -1,6 +1,7 @@
 package eu.seatter.spring5recipeapp.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by jas on 29/10/2018
@@ -20,6 +21,9 @@ public class Recipe {
     private String directions;
     //todo add
     //private Difficulty difficulty;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy ="recipe")
+    private Set<Ingredient> ingredients;
 
     @Lob    // Created a BLOB in the DB
     private Byte[] image;
@@ -97,6 +101,14 @@ public class Recipe {
 
     public void setImage(Byte[] image) {
         this.image = image;
+    }
+
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public Notes getNotes() {
