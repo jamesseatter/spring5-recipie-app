@@ -18,7 +18,8 @@ public class Note {
     @Lob    // Allows JPA to use a CLOB field in the DB to larger text can be stored than a DB Sdtring field.
     private String recipeNotes;
 
-    public Note() {
+    public Note(String recipeNotes) {
+        this.recipeNotes = recipeNotes;
     }
 
     public Note(String recipeNotes, Recipe recipe) {

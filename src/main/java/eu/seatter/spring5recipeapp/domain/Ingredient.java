@@ -28,7 +28,6 @@ public class Ingredient {
         this.amount = amount;
         this.uom = uom;
         this.description = description;
-        this.recipe = recipe;
     }
 
     public Long getId() {

@@ -121,11 +121,27 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
+    public Recipe addIngredient(Ingredient ingredient) {
+        ingredient.setRecipe(this);
+        this.ingredients.add(ingredient);
+        return this;
+    }
+
+    public Recipe removeIngredient(Ingredient ingredient) {
+        if(this.ingredients.contains(ingredient)) {
+            this.ingredients.remove(ingredient);
+        } else {
+            throw new RuntimeException("Ingredient not in recipe - " + ingredient.getDescription());
+        }
+        return this;
+    }
+
     public Note getNote() {
         return note;
     }
 
     public void setNote(Note note) {
+        note.setRecipe(this);
         this.note = note;
     }
 
