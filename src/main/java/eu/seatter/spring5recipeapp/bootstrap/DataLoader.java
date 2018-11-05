@@ -4,9 +4,11 @@ import eu.seatter.spring5recipeapp.domain.*;
 import eu.seatter.spring5recipeapp.repositories.CategoryRepository;
 import eu.seatter.spring5recipeapp.repositories.RecipeRepository;
 import eu.seatter.spring5recipeapp.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import java.util.Optional;
  * Created by jas on 29/10/2018
  */
 @Component
+@Slf4j
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     private final RecipeRepository recipeRepository;
@@ -30,7 +33,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
     }
 
     @Override
+    @Transactional  // This prevents the error where hibernate complains about fetching LAZY being a problem.
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+        log.debug("Loading bootstrap data");
         recipeRepository.saveAll(getRecipes());
     }
 
@@ -110,7 +115,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         guacRecipe.setSource("Simply Recipes");
         guacRecipe.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/");
 
-        guacRecipe.setNote(new Note("Be careful handling chiles if using. Wash your hands thoroughly after handling and do not touch your eyes or the area near your eyes with your hands for several hours."));
+        Note guacNote = new Note();
+        guacNote.setRecipeNotes("Be careful handling chiles if using. Wash your hands thoroughly after handling and do not touch your eyes or the area near your eyes with your hands for several hours.");
+        guacRecipe.setNote(guacNote);
 
         // Add directions
         guacRecipe.setDirections("1 Cut avocado, remove flesh: Cut the avocados in half. Remove seed. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon. (See How to Cut and Peel an Avocado.) Place in a bowl.\n" +
@@ -169,7 +176,9 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         tacoRecipe.setSource("Simply Recipes");
         tacoRecipe.setUrl("https://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
 
-        tacoRecipe.setNote(new Note("Look for ancho chile powder with the Mexican ingredients at your grocery store, on buy it online. (If you can't find ancho chili powder, you replace the ancho chili, the oregano, and the cumin with 2 1/2 tablespoons regular chili powder, though the flavor won't be quite the same.)"));
+        Note tacoNote = new Note();
+        tacoNote.setRecipeNotes("Look for ancho chile powder with the Mexican ingredients at your grocery store, on buy it online. (If you can't find ancho chili powder, you replace the ancho chili, the oregano, and the cumin with 2 1/2 tablespoons regular chili powder, though the flavor won't be quite the same.)");
+        tacoRecipe.setNote(tacoNote);
 
         // Add directions
         tacoRecipe.setDirections("1 Prepare a gas or charcoal grill for medium-high, direct heat.\n" +
