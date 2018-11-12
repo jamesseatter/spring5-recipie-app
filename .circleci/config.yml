@@ -32,15 +32,15 @@ jobs:
         # fallback to using the latest cache if no exact match is found
         - v1-dependencies-
 
-    - run:
-      command: |
-      set +e
-      mvn dependency:go-offline
+    - run: mvn dependency:go-offline
 
     - save_cache:
         paths:
         - ~/.m2
         key: v1-dependencies-{{ checksum "pom.xml" }}
+
+    # run tests!
+    - run: mvn integration-test
 
     - run:
         name: Save test results
@@ -53,6 +53,5 @@ jobs:
     - store_artifacts:
         path: ~/junit
 
-    # run tests!
-    - run: mvn integration-test
+
 
