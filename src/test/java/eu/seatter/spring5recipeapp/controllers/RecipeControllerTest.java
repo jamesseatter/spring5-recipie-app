@@ -1,20 +1,18 @@
 package eu.seatter.spring5recipeapp.controllers;
 
 import eu.seatter.spring5recipeapp.domain.Recipe;
-import eu.seatter.spring5recipeapp.repositories.RecipeRepository;
-import eu.seatter.spring5recipeapp.services.RecipeServiceImpl;
+import eu.seatter.spring5recipeapp.services.RecipeService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-
-import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -24,49 +22,32 @@ import static org.mockito.Mockito.*;
  */
 public class RecipeControllerTest {
 
-    private RecipeServiceImpl recipeService;
 
     @Mock
-    private RecipeRepository recipeRepository;
+    private RecipeService recipeService;
+
+    private RecipeController controller;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        controller = new RecipeController(recipeService);
     }
 
     @Test
-    public void getRecipeByIdTest() throws Exception {
+    public void testGetRecipe() throws Exception {
+
         Recipe recipe = new Recipe();
         recipe.setId(1L);
 
-        Optional<Recipe> recipeOptional = Optional.of(recipe);
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
 
-        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+        when(recipeService.findById(anyLong())).thenReturn(recipe);
 
-        Recipe recipeReturned = recipeService.findById(1L);
-
-        // assertNotNull("Null recipe returned", recipeReturned);
-        verify(recipeRepository, times(1)).findById(anyLong());
-        verify(recipeRepository, never()).findAll();
-
-
+        mockMvc.perform(get("/recipe/show/1"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("recipe/show"))
+                .andExpect(model().attributeExists("recipe"));
     }
-
-    @Test
-    public void getRecipesTest() throws Exception {
-        Recipe recipe = new Recipe();
-        HashSet recipesData = new HashSet();
-        recipesData.add(recipe);
-
-        when(recipeService.getRecipes()).thenReturn(recipesData);
-
-        Set<Recipe> recipes = recipeService.getRecipes();
-
-        assertEquals(1, recipes.size());
-        verify(recipeRepository, times(1)).findAll();
-        verify(recipeRepository, never()).findById(anyLong());
-    }
-
 }

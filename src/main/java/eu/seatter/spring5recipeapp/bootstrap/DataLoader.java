@@ -122,11 +122,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         // Add directions
         guacRecipe.setDirections("1 Cut avocado, remove flesh: Cut the avocados in half. Remove seed. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon. (See How to Cut and Peel an Avocado.) Place in a bowl.\n" +
                 "\n" +
-                "\n" +
-                "\n" +
                 "2 Mash with a fork: Using a fork, roughly mash the avocado. (Don't overdo it! The guacamole should be a little chunky.)\n" +
-                "\n" +
-                "\n" +
                 "\n" +
                 "3 Add salt, lime juice, and the rest: Sprinkle with salt and lime (or lemon) juice. The acid in the lime juice will provide some balance to the richness of the avocado and will help delay the avocados from turning brown.\n" +
                 "\n" +
@@ -137,7 +133,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
                 "4 Cover with plastic and chill to store: Place plastic wrap on the surface of the guacamole cover it and to prevent air reaching it. (The oxygen in the air causes oxidation which will turn the guacamole brown.) Refrigerate until ready to serve.\n" +
                 "\n" +
                 "Chilling tomatoes hurts their flavor, so if you want to add chopped tomato to your guacamole, add it just before serving.\n" +
-                "\n" +
+                "\n\n" +
                 "Variations\n" +
                 "\n" +
                 "For a very quick guacamole just take a 1/4 cup of salsa and mix it in with your mashed avocados.\n" +
