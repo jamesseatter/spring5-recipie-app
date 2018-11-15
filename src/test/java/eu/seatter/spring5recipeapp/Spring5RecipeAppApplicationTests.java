@@ -11,7 +11,6 @@ public class Spring5RecipeAppApplicationTests {
 
     @Test
     public void contextLoads() {
-        // empty test, just checks context loads
     }
 
 }
