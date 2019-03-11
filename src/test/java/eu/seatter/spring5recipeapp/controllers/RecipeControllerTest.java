@@ -2,6 +2,8 @@ package eu.seatter.spring5recipeapp.controllers;
 
 import eu.seatter.spring5recipeapp.commands.RecipeCommand;
 import eu.seatter.spring5recipeapp.domain.Recipe;
+import eu.seatter.spring5recipeapp.exceptions.NotFoundException;
+import eu.seatter.spring5recipeapp.repositories.RecipeRepository;
 import eu.seatter.spring5recipeapp.services.RecipeService;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +12,8 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -29,6 +33,9 @@ public class RecipeControllerTest {
 
     @Mock
     private RecipeService recipeService;
+
+    @Mock
+    private RecipeRepository recipeRepository;
 
     private RecipeController controller;
 
@@ -102,5 +109,25 @@ public class RecipeControllerTest {
                 .andExpect(view().name("redirect:/"));
 
         verify(recipeService, times(1)).deleteById(anyLong());
+    }
+
+    @Test
+    public void getRecipeByIdTestNotFound() throws Exception {
+        Optional<Recipe> recipeOptional = Optional.empty();
+
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        Recipe recipeReturned = recipeService.findById(1L);
+    }
+
+    @Test
+    public void testGetRecipeNotFound() throws Exception {
+        Recipe recipe = new Recipe();
+        recipe.setId(1L);
+
+        when(recipeService.findById(anyLong())).thenThrow(NotFoundException.class);
+
+        mockMvc.perform(get("/recipe/1/show"))
+                .andExpect(status().isNotFound());
     }
 }
