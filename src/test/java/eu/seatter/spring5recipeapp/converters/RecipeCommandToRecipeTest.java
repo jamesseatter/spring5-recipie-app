@@ -33,28 +33,28 @@ public class RecipeCommandToRecipeTest {
     private static final Long INGRED_ID_2 = 4L;
     private static final Long NOTES_ID = 9L;
 
-    RecipeCommandToRecipe converter;
+    private RecipeCommandToRecipe converter;
 
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         converter = new RecipeCommandToRecipe(new CategoryCommandToCategory(),
                 new IngredientCommandToIngredient(new UnitOfMeasureCommandToUnitOfMeasure()),
                 new NoteCommandToNote());
     }
 
     @Test
-    public void testNullObject() throws Exception {
+    public void testNullObject() {
         assertNull(converter.convert(null));
     }
 
     @Test
-    public void testEmptyObject() throws Exception {
+    public void testEmptyObject() {
         assertNotNull(converter.convert(new RecipeCommand()));
     }
 
     @Test
-    public void convert() throws Exception {
+    public void convert() {
         //given
         RecipeCommand recipeCommand = new RecipeCommand();
         recipeCommand.setId(RECIPE_ID);

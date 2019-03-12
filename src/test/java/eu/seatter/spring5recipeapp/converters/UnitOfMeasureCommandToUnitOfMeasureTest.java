@@ -18,25 +18,25 @@ public class UnitOfMeasureCommandToUnitOfMeasureTest {
     private static final String DESCRIPTION = "description";
     private static final Long ID_VALUE = 1L;
 
-    UnitOfMeasureCommandToUnitOfMeasure converter;
+    private UnitOfMeasureCommandToUnitOfMeasure converter;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         converter = new UnitOfMeasureCommandToUnitOfMeasure();
     }
 
     @Test
-    public void testNullParameter() throws Exception {
+    public void testNullParameter() {
         assertNull(converter.convert(null));
     }
 
     @Test
-    public void testEmptyObject() throws Exception {
+    public void testEmptyObject() {
         assertNotNull(converter.convert(new UnitOfMeasureCommand()));
     }
 
     @Test
-    public void convert() throws Exception {
+    public void convert() {
         //given
         UnitOfMeasureCommand command = new UnitOfMeasureCommand();
         command.setId(ID_VALUE);

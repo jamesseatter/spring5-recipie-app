@@ -50,7 +50,7 @@ public class IngredientServiceImpl implements IngredientService {
 
         Optional<IngredientCommand> ingredientCommandOptional = recipe.getIngredients().stream()
                 .filter(ingredient -> ingredient.getId().equals(ingredientId))
-                .map(ingredient -> ingredientToIngredientCommand.convert(ingredient)).findFirst();
+                .map(ingredientToIngredientCommand::convert).findFirst();
 
         if (!ingredientCommandOptional.isPresent()) {
             //todo impl error handling
@@ -131,7 +131,7 @@ public class IngredientServiceImpl implements IngredientService {
             Optional<Ingredient> ingredientOptional = recipe
                     .getIngredients()
                     .stream()
-                    .filter(ingredient -> ingredient.getId().equals(Long.valueOf(ingredientId)))
+                    .filter(ingredient -> ingredient.getId().equals(ingredientId))
                     .findFirst();
 
             if(ingredientOptional.isPresent()) {

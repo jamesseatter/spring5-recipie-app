@@ -14,28 +14,28 @@ import static org.junit.Assert.*;
  * Time: 14:33
  */
 public class CategoryToCategoryCommandTest {
-    private static final Long ID_VALUE = new Long(1L);
+    private static final Long ID_VALUE = 1L;
     private static final String DESCRIPTION = "description";
 
-    CategoryToCategoryCommand converter;
+    private CategoryToCategoryCommand converter;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         converter = new CategoryToCategoryCommand();
     }
 
     @Test
-    public void testNullObject() throws Exception {
+    public void testNullObject() {
         assertNull(converter.convert(null));
     }
 
     @Test
-    public void testEmptyObject() throws Exception {
+    public void testEmptyObject() {
         assertNotNull(converter.convert(new Category()));
     }
 
     @Test
-    public void convert() throws Exception{
+    public void convert() {
         //given
         Category category = new Category();
         category.setId(ID_VALUE);

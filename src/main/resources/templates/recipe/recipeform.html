@@ -4,28 +4,15 @@
     <meta charset="UTF-8"/>
     <title>Recipe Form2</title>
 
-    <!--&lt;!&ndash; Latest compiled and minified CSS &ndash;&gt;-->
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
-          <!--integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+    <link rel="stylesheet"
+          href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+    <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 
-    <!--&lt;!&ndash; Latest compiled and minified JavaScript &ndash;&gt;-->
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"-->
-            <!--integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"-->
-            <!--crossorigin="anonymous"></script>-->
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
 </head>
 <body>
 <!--/*@thymesVar id="recipe" type="eu.seatter.spring5recipeapp.domain.Recipe"*/-->
+<!--/*@thymesVar id="difficultyValue" type="eu.seatter.spring5recipeapp.domain.Difficulty"*/-->
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -40,7 +27,9 @@
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>Recipe Description:</label>
-                                    <input type="text" class="form-control" th:field="*{description}"/>
+                                    <label>
+                                        <input type="text" class="form-control" th:field="*{description}"/>
+                                    </label>
                                 </div>
                             </div>
                             <div class="row">
@@ -65,39 +54,53 @@
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>Prep Time:</label>
-                                    <input type="text" class="form-control" th:field="*{prepTime}"/>
+                                    <label>
+                                        <input type="text" class="form-control" th:field="*{prepTime}"/>
+                                    </label>
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label>Cooktime:</label>
-                                    <input type="text" class="form-control" th:field="*{cookTime}"/>
+                                    <label>
+                                        <input type="text" class="form-control" th:field="*{cookTime}"/>
+                                    </label>
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label>Difficulty:</label>
-                                    <select class="form-control" th:field="*{difficulty}">
-                                        <option th:each="difficultyValue : ${T(eu.seatter.spring5recipeapp.domain.Difficulty).values()}"
-                                                th:value="${difficultyValue.name()}"
-                                                th:text="${difficultyValue.name()}"
-                                        >val</option>
-                                    </select>
-                                    <select class="form-control" th:remove="all">
-                                        <option>Easy</option>
-                                        <option>Medium</option>
-                                        <option>Hard</option>
-                                    </select>
+                                    <label>
+                                        <select class="form-control" th:field="*{difficulty}">
+                                            <option th:each="difficultyValue : ${T(eu.seatter.spring5recipeapp.domain.Difficulty).values()}"
+                                                    th:value="${difficultyValue.name()}"
+                                                    th:text="${difficultyValue.name()}"
+                                            >val</option>
+                                        </select>
+                                    </label>
+                                    <label>
+                                        <select class="form-control" th:remove="all">
+                                            <option>Easy</option>
+                                            <option>Medium</option>
+                                            <option>Hard</option>
+                                        </select>
+                                    </label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>Servings:</label>
-                                    <input type="text" class="form-control" th:field="*{servings}"/>
+                                    <label>
+                                        <input type="text" class="form-control" th:field="*{servings}"/>
+                                    </label>
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label>Source:</label>
-                                    <input type="text" class="form-control" th:field="*{source}"/>
+                                    <label>
+                                        <input type="text" class="form-control" th:field="*{source}"/>
+                                    </label>
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label>URL:</label>
-                                    <input type="text" class="form-control" th:field="*{url}"/>
+                                    <label>
+                                        <input type="text" class="form-control" th:field="*{url}"/>
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -137,7 +140,9 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12 form-group">
-                                    <textarea class="form-control" rows="3" th:field="*{directions}"></textarea></div>
+                                    <label>
+                                        <textarea class="form-control" rows="3" th:field="*{directions}"></textarea>
+                                    </label></div>
                             </div>
                         </div>
                     </div>
@@ -148,7 +153,9 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12 form-group">
-                                    <textarea class="form-control" rows="3" th:field="*{note.recipeNotes}"></textarea>
+                                    <label>
+                                        <textarea class="form-control" rows="3" th:field="*{note.recipeNotes}"></textarea>
+                                    </label>
                                 </div>
                             </div>
                         </div>

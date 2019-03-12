@@ -16,22 +16,22 @@ import static org.junit.Assert.*;
 public class UnitOfMeasureToUnitOfMeasureCommandTest {
 
     private static final String DESCRIPTION = "description";
-    private static final Long LONG_ID = new Long(1L);
+    private static final Long LONG_ID = 1L;
 
-    UnitOfMeasureToUnitOfMeasureCommand converter;
+    private UnitOfMeasureToUnitOfMeasureCommand converter;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         converter = new UnitOfMeasureToUnitOfMeasureCommand();
     }
 
     @Test
-    public void testNullObjectConvert() throws Exception {
+    public void testNullObjectConvert() {
         assertNull(converter.convert(null));
     }
 
     @Test
-    public void testEmptyObj() throws Exception {
+    public void testEmptyObj() {
         assertNotNull(converter.convert(new UnitOfMeasure()));
     }
 

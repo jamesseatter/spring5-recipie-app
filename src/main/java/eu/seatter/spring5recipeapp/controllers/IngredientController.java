@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
  * Date: 19/11/2018
  * Time: 11:19
  */
+@SuppressWarnings("SameReturnValue")
 @Slf4j
 @Controller
 public class IngredientController {
@@ -88,7 +89,7 @@ public class IngredientController {
     }
 
     @PostMapping("recipe/{recipeId}/ingredient")
-    public String saveOrUpdate(@ModelAttribute IngredientCommand command) {
+    public String saveOrUpdate(@PathVariable String recipeId, @ModelAttribute IngredientCommand command) {
         IngredientCommand savedCommand = ingredientService.saveIngredientCommand(command);
 
         log.debug("saved recipe id:" + savedCommand.getRecipeId());

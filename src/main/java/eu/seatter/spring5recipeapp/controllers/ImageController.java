@@ -23,6 +23,7 @@ import java.io.InputStream;
  * Date: 21/01/2019
  * Time: 15:43
  */
+@SuppressWarnings("SameReturnValue")
 @Controller
 public class ImageController {
 

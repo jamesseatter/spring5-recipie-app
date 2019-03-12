@@ -14,28 +14,28 @@ import static org.junit.Assert.*;
  * Time: 14:33
  */
 public class NoteCommandToNoteTest {
-    private static final Long ID_VALUE = new Long(1L);
+    private static final Long ID_VALUE = 1L;
     private static final String RECIPE_NOTES = "Notes";
-    NoteCommandToNote converter;
+    private NoteCommandToNote converter;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         converter = new NoteCommandToNote();
 
     }
 
     @Test
-    public void testNullParameter() throws Exception {
+    public void testNullParameter() {
         assertNull(converter.convert(null));
     }
 
     @Test
-    public void testEmptyObject() throws Exception {
+    public void testEmptyObject() {
         assertNotNull(converter.convert(new NoteCommand()));
     }
 
     @Test
-    public void convert() throws Exception {
+    public void convert() {
         //given
         NoteCommand notesCommand = new NoteCommand();
         notesCommand.setId(ID_VALUE);

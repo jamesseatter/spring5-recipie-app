@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Date: 09/11/2018
  * Time: 17:34
  */
+@SuppressWarnings("SameReturnValue")
 @Controller
 @Slf4j
 public class RecipeController {

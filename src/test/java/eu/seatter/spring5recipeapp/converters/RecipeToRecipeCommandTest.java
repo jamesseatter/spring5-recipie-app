@@ -16,12 +16,12 @@ import static org.junit.Assert.*;
 public class RecipeToRecipeCommandTest {
 
     private static final Long RECIPE_ID = 1L;
-    private static final Integer COOK_TIME = Integer.valueOf(5);
-    private static final Integer PREP_TIME = Integer.valueOf(7);
+    private static final Integer COOK_TIME = 5;
+    private static final Integer PREP_TIME = 7;
     private static final String DESCRIPTION = "My Recipe";
     private static final String DIRECTIONS = "Directions";
     private static final Difficulty DIFFICULTY = Difficulty.EASY;
-    private static final Integer SERVINGS = Integer.valueOf(3);
+    private static final Integer SERVINGS = 3;
     private static final String SOURCE = "Source";
     private static final String URL = "Some URL";
     private static final Long CAT_ID_1 = 1L;
@@ -30,10 +30,10 @@ public class RecipeToRecipeCommandTest {
     private static final Long INGRED_ID_2 = 4L;
     private static final Long NOTE_ID = 9L;
 
-    RecipeToRecipeCommand converter;
+    private RecipeToRecipeCommand converter;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         converter = new RecipeToRecipeCommand(
                             new CategoryToCategoryCommand(),
                             new IngredientToIngredientCommand(new UnitOfMeasureToUnitOfMeasureCommand()),
@@ -41,12 +41,12 @@ public class RecipeToRecipeCommandTest {
     }
 
     @Test
-    public void testNullObject() throws Exception {
+    public void testNullObject() {
         assertNull(converter.convert(null));
     }
 
     @Test
-    public void testEmptyObject() throws Exception {
+    public void testEmptyObject() {
         assertNotNull(converter.convert(new Recipe()));
     }
 

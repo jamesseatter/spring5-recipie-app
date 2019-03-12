@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
 /**
@@ -27,10 +26,10 @@ public class ImageServiceImplTest {
     @Mock
     RecipeRepository recipeRepository;
 
-    ImageService imageService;
+    private ImageService imageService;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
         imageService = new ImageServiceImpl(recipeRepository);
     }
